@@ -1,6 +1,6 @@
-# wp_api
+# wpypress
 
-`wp_api` is a Python library designed for interacting with the WordPress REST API. It simplifies the process of managing posts, pages, media, categories, tags, and SEO settings on WordPress sites.
+`wpypress` is a Python library designed for interacting with the WordPress REST API. It simplifies the process of managing posts, pages, media, categories, tags, and SEO settings on WordPress sites.
 
 ## Features
 
@@ -12,10 +12,10 @@
 
 ## Installation
 
-To install `wp_api`, simply use pip:
+To install `wpypress`, simply use pip:
 
 ```bash
-pip install wp_api
+pip install wpypress
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ pip install wp_api
 To start using the library, first, initialize the `WPClient` with your WordPress site credentials:
 
 ```python
-from wp_api import WPClient
+from wpypress import WPClient
 
 wp = WPClient(
     base_url="https://your-wordpress-site.com",
