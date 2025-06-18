@@ -18,9 +18,12 @@ class PostsEndpoint:
 
         return response.json(), pagination
 
-    def get(self, post_id):
-        """Get a single post by ID"""
-        url = f"{self.endpoint}/{post_id}"
+    def get(self, post_id, slug=None):
+        """Get a single post by ID or slug"""
+        if slug:
+            url = f"{self.endpoint}?slug={slug}"
+        else:
+            url = f"{self.endpoint}/{post_id}"
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.get(url, headers=headers)
         response.raise_for_status()

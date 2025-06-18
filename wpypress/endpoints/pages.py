@@ -18,9 +18,12 @@ class PagesEndpoint:
 
         return response.json(), pagination
 
-    def get(self, page_id):
+    def get(self, page_id, slug=None):
         """Get a single page by ID"""
-        url = f"{self.endpoint}/{page_id}"
+        if slug:
+            url = f"{self.endpoint}?slug={slug}"
+        else:
+            url = f"{self.endpoint}/{page_id}"
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
