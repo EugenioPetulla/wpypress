@@ -1,5 +1,5 @@
-from wp_api.auth import BasicAuth
-from wp_api.endpoints import posts, categories, tags, pages, media, seo
+from wpypress.auth import BasicAuth
+from wpypress.endpoints import posts, categories, tags, pages, media, seo
 
 class WPClient:
     def __init__(self, base_url, username=None, password=None):

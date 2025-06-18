@@ -1,6 +1,6 @@
 import os
 import requests
-from wp_api.utils import extract_pagination_headers
+from wpypress.utils import extract_pagination_headers
 
 class MediaEndpoint:
     def __init__(self, client):

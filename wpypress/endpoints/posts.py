@@ -1,5 +1,5 @@
 import requests
-from wp_api.utils import extract_pagination_headers
+from wpypress.utils import extract_pagination_headers
 
 class PostsEndpoint:
     def __init__(self, client):
@@ -11,7 +11,7 @@ class PostsEndpoint:
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.get(self.endpoint, headers=headers, params=params)
         response.raise_for_status()
-    
+
         pagination = pagination = extract_pagination_headers(response)
         pagination['page'] = int(params.get('page', 1)) if params else 1
         pagination['per_page'] = int(params.get('per_page', 10)) if params else 10
@@ -26,13 +26,15 @@ class PostsEndpoint:
         response.raise_for_status()
         return response.json()
 
-    def create(self, title, content, status='publish', categories=None, tags=None, featured_media=None, **kwargs):
+    def create(self, title, content, status='publish', categories=None, tags=None, featured_media=None, excerpt=None, **kwargs):
         """Create a new post"""
         data = {
             'title': title,
             'content': content,
             'status': status,
         }
+        if excerpt:
+            data['excerpt'] = excerpt
         if categories:
             data['categories'] = categories  # List of category IDs
         if tags:

@@ -1,14 +1,14 @@
 import requests
-from wp_api.utils import extract_pagination_headers
+from wpypress.utils import extract_pagination_headers
 
 
-class TagsEndpoint:
+class CategoriesEndpoint:
     def __init__(self, client):
         self.client = client
-        self.endpoint = f"{self.client.base_url}/wp-json/wp/v2/tags"
+        self.endpoint = f"{self.client.base_url}/wp-json/wp/v2/categories"
 
     def list(self, params=None):
-        """List all tags (with optional filters) and pagination metadata"""
+        """List all categories (with optional filters) and pagination metadata"""
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.get(self.endpoint, headers=headers, params=params)
         response.raise_for_status()
@@ -19,21 +19,23 @@ class TagsEndpoint:
 
         return response.json(), pagination
 
-    def get(self, tag_id):
-        """Get a tag by ID"""
-        url = f"{self.endpoint}/{tag_id}"
+    def get(self, category_id):
+        """Get a category by ID"""
+        url = f"{self.endpoint}/{category_id}"
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.get(url, headers=headers)
         response.raise_for_status()
         return response.json()
 
-    def create(self, name, slug=None, description=None, **kwargs):
-        """Create a new tag"""
+    def create(self, name, slug=None, description=None, parent=None, **kwargs):
+        """Create a new category"""
         data = {'name': name}
         if slug:
             data['slug'] = slug
         if description:
             data['description'] = description
+        if parent:
+            data['parent'] = parent  # parent category ID
         data.update(kwargs)
 
         headers = {'Content-Type': 'application/json'}
@@ -44,9 +46,9 @@ class TagsEndpoint:
         response.raise_for_status()
         return response.json()
 
-    def update(self, tag_id, **kwargs):
-        """Update an existing tag"""
-        url = f"{self.endpoint}/{tag_id}"
+    def update(self, category_id, **kwargs):
+        """Update an existing category"""
+        url = f"{self.endpoint}/{category_id}"
         headers = {'Content-Type': 'application/json'}
         if self.client.auth:
             headers.update(self.client.auth.get_headers())
@@ -55,9 +57,9 @@ class TagsEndpoint:
         response.raise_for_status()
         return response.json()
 
-    def delete(self, tag_id):
-        """Permanently delete a tag"""
-        url = f"{self.endpoint}/{tag_id}"
+    def delete(self, category_id):
+        """Permanently delete a category"""
+        url = f"{self.endpoint}/{category_id}"
         params = {'force': 'true'}
         headers = self.client.auth.get_headers() if self.client.auth else {}
         response = requests.delete(url, headers=headers, params=params)
