@@ -1,5 +1,30 @@
-.venv
-__pycache__
-.ropeproject
-dist
-build
+# Ambiente virtuale
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# File di progetto IDE
+.ropeproject/
+.idea/
+.vscode/
+
+# Directory di distribuzione e build per PyPI
+dist/
+build/
+*.egg-info/
+
+# File di configurazione del sistema
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Altri file temporanei
+*.tmp
+*.temp
+
