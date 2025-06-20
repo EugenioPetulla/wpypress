@@ -47,6 +47,22 @@ print(f"Total pages: {pagination['total_pages']}")
 print(f"Current page: {pagination['page']}\n")
 ```
 
+#### Fetch a Post
+
+Retrieve a post by ID:
+
+```python
+post = wp.posts.get(200) # WordPress Post ID
+print(f"Post Title: {post['title']['rendered']}")
+```
+
+Retrieve a post by slug:
+
+```python
+post = wp.posts.get(slug='my-post-slug') # WordPress Post Slug
+print(f"Post Title: {post[0]['title']['rendered']}")
+```
+
 #### Create a Post
 
 Create a new post with categories and tags:
@@ -145,3 +161,8 @@ if wp.seo.is_yoast():
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Changelog
+
+### Release: 0.1.3
+Add support for slug in get method for posts and pages.

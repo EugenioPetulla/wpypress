@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="wpypress",
-    version="0.1.2",
+    version="0.1.3",
     author="Eugenio Petullà",
     author_email="eugenio@codeat.it",
     description="A versatile Python library for seamless interaction with the WordPress REST API, including built-in SEO features and more.",
