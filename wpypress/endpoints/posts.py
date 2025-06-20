@@ -18,7 +18,7 @@ class PostsEndpoint:
 
         return response.json(), pagination
 
-    def get(self, post_id, slug=None):
+    def get(self, post_id=None, slug=None):
         """Get a single post by ID or slug"""
         if slug:
             url = f"{self.endpoint}?slug={slug}"

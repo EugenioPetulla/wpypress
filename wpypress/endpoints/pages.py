@@ -18,7 +18,7 @@ class PagesEndpoint:
 
         return response.json(), pagination
 
-    def get(self, page_id, slug=None):
+    def get(self, page_id=None, slug=None):
         """Get a single page by ID"""
         if slug:
             url = f"{self.endpoint}?slug={slug}"
